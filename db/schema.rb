@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2019_03_11_025535) do
     t.string "title"
     t.text "memo"
     t.boolean "is_display", default: true
-    t.integer "status"
+    t.integer "status", limit: 1, default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

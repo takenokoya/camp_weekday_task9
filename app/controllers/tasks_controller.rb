@@ -6,9 +6,13 @@ class TasksController < ApplicationController
   end
 
   def new
+    @task = Task.new
   end
 
   def create
+    @task = Task.new(task_params)
+    @task.save
+    redirect_to @task
   end
 
   def edit
@@ -22,4 +26,11 @@ class TasksController < ApplicationController
 
   def hide
   end
+
+  private
+
+  def task_params
+    params.require(:task).permit(:title, :memo, :status)
+  end
+  
 end
