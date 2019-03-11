@@ -1,15 +1,15 @@
 <h1>タスク登録フォーム</h1>
 <%= form_with model: @task, local: true do |form| %>
   <p>
-    タスク名:<br>
+    タスク名：<br>
     <%= form.text_field :title%>
   </p>
   <p>
-    タスクメモ:<br>
+    タスクメモ：<br>
     <%= form.text_area :memo %>
   </p>
   <p>
-    状態:<br>
+    状態：<br>
     <%= form.select :status,Task.statuses.keys.to_a, {} %>
   </p>
   <%= form.submit "登録" %>
