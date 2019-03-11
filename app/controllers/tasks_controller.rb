@@ -13,16 +13,24 @@ class TasksController < ApplicationController
 
   def create
     @task = Task.new(task_params)
-    @task.save
-    redirect_to @task
+    if @task.save
+      flash[:notice] = "タスクを登録しました。"
+      redirect_to @task
+    else
+      render :new
+    end
   end
 
   def edit
   end
 
   def update
-    @task.update(task_params)
-    redirect_to @task
+    if @task.update(task_params)
+      flash[:notice] = "タスクを更新しました。"
+      redirect_to @task
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -31,6 +39,7 @@ class TasksController < ApplicationController
   end
 
   def hide
+    @hide_tasks = Task.order(created_at: :desc).limit(5)
   end
 
   private
