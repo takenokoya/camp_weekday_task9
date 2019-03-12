@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  
+  # whereメソッドを追加
   def index
-    @tasks = Task.order(created_at: :desc).limit(5)
+    @tasks = Task.order(created_at: :desc).where(is_display: true).limit(5)
   end
 
   def show
@@ -14,8 +16,7 @@ class TasksController < ApplicationController
   def create
     @task = Task.new(task_params)
     if @task.save
-      flash[:notice] = "タスクを登録しました。"
-      redirect_to @task
+      redirect_to @task, notice: "タスクを登録しました。"
     else
       render :new
     end
@@ -26,8 +27,7 @@ class TasksController < ApplicationController
 
   def update
     if @task.update(task_params)
-      flash[:notice] = "タスクを更新しました。"
-      redirect_to @task
+      redirect_to @task, notice: "タスクを更新しました。"
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class TasksController < ApplicationController
   end
 
   def hide
-    @hide_tasks = Task.order(created_at: :desc).limit(5)
+    @tasks = Task.where(is_display: false)
   end
 
   private

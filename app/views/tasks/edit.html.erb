@@ -6,15 +6,15 @@
     </div>
   <% end %>
     <p>
-      タスク名：<br>
+      <%= form.label "タスク名：" %><br>
       <%= form.text_field :title%>
     </p>
     <p>
-      タスクメモ：<br>
+      <%= form.label "タスクメモ：" %><br>
       <%= form.text_area :memo %>
     </p>
     <p>
-      状態：<br>
+      <%= form.label "状態：" %><br>
       <%= form.select :status,Task.statuses.keys.to_a, {} %>
     </p>
     <%= form.submit "更新" %>
