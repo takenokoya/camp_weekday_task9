@@ -1,9 +1,9 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   
-  # whereメソッドを追加
+  # whereメソッドを改善(真偽値判定後に並び替え)
   def index
-    @tasks = Task.order(created_at: :desc).where(is_display: true).limit(5)
+    @tasks = Task.where(is_display: true).order(created_at: :desc).limit(5)
   end
 
   def show
@@ -44,8 +44,10 @@ class TasksController < ApplicationController
 
   private
 
+  # ストロングパラメーターにis_displayを追加
+  # 本Appではis_displayを操作する入力フォームはないものの、permitしてもセキュリティ上の問題はないと思ったので拡張性を考慮して追加
   def task_params
-    params.require(:task).permit(:title, :memo, :status)
+    params.require(:task).permit(:title, :memo, :is_display, :status)
   end
 
   def set_task

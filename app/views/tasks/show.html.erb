@@ -1,18 +1,10 @@
-<p>
-  <b>タイトル：<%= @task.title %></b>
-</p>
-<p>
-  <b>メモ：<%= @task.memo %></b>
-</p>
-<p>
-  <b>状態：<%= @task.status %></b>
-</p>
-<p>
-  <b>登録日：<%= @task.created_at.strftime("%Y年%m月%d日") %></b>
-</p>
+<p><b>タイトル：<%= @task.title %></b></p>
+<p><b>メモ：<%= @task.memo %></b></p>
+<p><b>状態：<%= @task.status %></b></p>
+<p><b>登録日：<%= @task.created_at.strftime("%Y年%m月%d日") %></b></p>
 
 <p>
   <%= link_to "一覧", tasks_path %>
   <%= link_to "編集", edit_task_path(@task)%>
-  <%= link_to "削除", task_path(@task), method: :delete, data: {confirm: "削除してよろしいですか？"} %>
+  <%= link_to "削除", task_path(@task), method: :delete, data: { confirm: "削除してよろしいですか？" } %>
 </p>
