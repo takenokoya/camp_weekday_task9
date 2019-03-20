@@ -1,0 +1,14 @@
+<h1>タスク一覧</h1>
+<ul>
+  <% @tasks.each do |task| %>
+    <li>
+      <!--link_toメソッドのオプションでclass属性を指定し、スタイルシートに定義したstatusに応じた色を適用-->
+      <%= link_to task.title, task, :class => "#{task.status}" %> <%= task.created_at.strftime("%Y年%m月%d日") %>
+    </li>
+  <% end %>    
+</ul>
+
+<p>
+  <%= link_to "登録する", new_task_path %>
+  <%= link_to "非表示一覧", tasks_hide_path %>
+</p>
